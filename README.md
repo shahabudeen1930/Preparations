@@ -20,6 +20,7 @@ This repository contains documentation, code samples, and best practices for var
 ### Containerization & Orchestration
 - [Docker Containers](Dockers.md) *(Note: Consider renaming to Docker.md)*
 - [Kubernetes](Kubernetes.md)
+- [OpenShift](openshift.md)
 - [Helm Charts](Helm.md)
 
 ### Infrastructure as Code

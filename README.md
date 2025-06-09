@@ -12,6 +12,8 @@ This repository contains documentation, code samples, and best practices for var
 - [Site Reliability Engineering (SRE) Fundamentals](SRE.md)
 
 ### Cloud Platforms
+![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white)
 - [Amazon Web Services (AWS)](AWS.md)
 - [Microsoft Azure](Azure.md)
 - [Google Cloud Platform (GCP)](GCP.md)

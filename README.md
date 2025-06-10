@@ -25,10 +25,10 @@ This repository contains documentation, code samples, and best practices for var
 ![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white)
 ![GCP](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
 ![OCI](https://img.shields.io/badge/Oracle%20Cloud-F80000?style=for-the-badge&logo=oracle&logoColor=white)
-- [Amazon Web Services (AWS)](AWS.md)
-- [Microsoft Azure](Azure.md)
-- [Google Cloud Platform (GCP)](GCP.md)
-- [Oracle Cloud Infrastructure (OCI)](OCI.md)
+- [Amazon Web Services (AWS)](CloudComputing/AWS.md)
+- [Microsoft Azure](CloudComputing/Azure.md)
+- [Google Cloud Platform (GCP)](CloudComputing/GCP.md)
+- [Oracle Cloud Infrastructure (OCI)](CloudComputing/OCI.md)
 
 ### Containerization & Orchestration
 - [Docker Containers](DockersData.md) *(Note: Consider renaming to DockersData.md)*

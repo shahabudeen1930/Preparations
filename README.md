@@ -3,8 +3,10 @@ Interview Preparations
 
 |Topic | Link |
 | - | - |
-|Basic DevOps Concepts|https://github.com/shahabudeen1930/Preparations/blob/main/BasicDevOps.md|
-|Basic SRE Concepts|https://github.com/shahabudeen1930/Preparations/blob/main/BasicSRE.md|
+|Basic DevOps Concepts | https://github.com/shahabudeen1930/Preparations/blob/main/BasicDevOps.md|
+|Basic SRE Concepts    | https://github.com/shahabudeen1930/Preparations/blob/main/BasicSRE.md|
+|DevOps InterviewBits  | https://github.com/shahabudeen1930/Preparations/blob/main/DevOps-InterviewBits.md|
+|SRE InterviewBits     | https://github.com/shahabudeen1930/Preparations/blob/main/SRE-InterviewBits.md|
 
 
 # DevOps & Cloud Technologies Knowledge Base

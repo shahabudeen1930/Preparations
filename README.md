@@ -3,7 +3,7 @@ Interview Preparations
 
 |Topic | Link |
 | - | - |
-|DevOps |https://github.com/shahabudeen1930/Preparations/blob/main/DevOps.md|
+|Basic DevOps Concepts |https://github.com/shahabudeen1930/Preparations/blob/main/DevOps.md|
 
 
 # DevOps & Cloud Technologies Knowledge Base

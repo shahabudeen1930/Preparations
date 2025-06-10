@@ -1,6 +1,11 @@
 # Preparations
 Interview Preparations
 
+|Topic | Link |
+| - | - |
+|DevOps |https://github.com/shahabudeen1930/Preparations/blob/main/DevOps.md|
+
+
 # DevOps & Cloud Technologies Knowledge Base
 
 This repository contains documentation, code samples, and best practices for various DevOps and cloud technologies.

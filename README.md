@@ -3,8 +3,8 @@ Interview Preparations
 
 |Topic | Link |
 | - | - |
-|Basic DevOps Concepts|https://github.com/shahabudeen1930/Preparations/blob/main/DevOps.md|
-|Basic SRE Concepts|https://github.com/shahabudeen1930/Preparations/blob/main/SRE.md|
+|Basic DevOps Concepts|https://github.com/shahabudeen1930/Preparations/blob/main/BasicDevOps.md|
+|Basic SRE Concepts|https://github.com/shahabudeen1930/Preparations/blob/main/BasicSRE.md|
 
 
 # DevOps & Cloud Technologies Knowledge Base
@@ -14,8 +14,8 @@ This repository contains documentation, code samples, and best practices for var
 ## Topics Covered
 
 ### Core DevOps
-- [DevOps Principles and Practices](DevOps.md)
-- [Site Reliability Engineering (SRE) Fundamentals](SRE.md)
+- [DevOps Principles and Practices](BasicDevOps.md)
+- [Site Reliability Engineering (SRE) Fundamentals](BasicSRE.md)
 
 ### Cloud Platforms
 ## Cloud Platforms

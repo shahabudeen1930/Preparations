@@ -52,3 +52,37 @@
     - Implemented Self-Healing Mechanisms
     - Optimized Cost & Performance
     - Root Cause Analysis (RCA) and Postmortem
+ 
+#### Cost optimization in DevOps
+- points
+     - **Auto-scaling**: Reduce idle resources.
+     - **Spot Instances**: Use AWS EC2 Spot for non-critical workloads.
+     - **Resource Quotas**: Prevent over-provisioning in Kubernetes.
+     - **Monitor Usage**: AWS Cost Explorer, Azure Cost Management.
+
+#### Optimizations in realtime - CPU & high pod restarts
+- In one of my recent projects, we were managing a microservices-based application hosted on Azure Kubernetes Service (AKS). We noticed frequent CPU throttling and high pod restarts, especially during peak traffic hours, which affected reliability.
+- After investigating, we found that resource requests and limits for several services were either too low or misconfigured. I implemented a resource optimization initiative: used Prometheus and Grafana to monitor actual CPU/memory usage over time, then fine-tuned the resource limits based on that data. Additionally, I introduced horizontal pod autoscaling to scale the services based on traffic patterns.
+- As a result, we reduced pod restarts by over 80%, improved system stability, and decreased infrastructure cost by around 25% by eliminating over-provisioning.
+
+#### Optimizations in realtime - application performance
+- In one of my recent projects, we were managing infrastructure on Azure using Terraform for IaC. Our application was deployed across multiple services including Azure Kubernetes Service (AKS), Azure App Services, and Azure SQL.
+- We noticed that during peak usage, the application performance degraded and response times were high. After digging into Azure Monitor and Application Insights, we identified that our AKS cluster was over-provisioned in some areas and under-provisioned in others, leading to resource wastage and instability.
+- To optimize this, I implemented the following:"
+     - Used Terraform to refactor our infrastructure code, making it more modular and parameterized to easily scale services based on load.
+     - Enabled Horizontal Pod Autoscaling in AKS and defined appropriate CPU/memory thresholds based on historical metrics from Prometheus and Grafana.
+     - Configured Azure Load Testing to simulate peak traffic and validate the improvements.
+     - Reduced over-provisioning by analyzing metrics and rightsizing the VMs using Azure Advisor and Terraform updates.
+     - Automated AKS node pool scaling using KEDA for event-driven workloads.
+- As a result, we reduced monthly infrastructure costs by around 20%, improved system stability, and cut down latency by nearly 40% during high-traffic periods.
+
+#### End-to-End deployment Workflow
+- Process
+     - Provision Infra → Terraform creates AKS, VMs, Storage, Network.
+     - Code Management → Devs push code to GitHub/GitLab.
+     - CI/CD Pipeline → Jenkins/Azure DevOps builds, scans, and deploys.
+     - Security & Compliance → Use Trivy, SonarQube, Aqua.
+     - Deployment & GitOps → Deploy via Helm & ArgoCD.
+     - Monitoring & Logging → Prometheus, Grafana, ELK track performance.
+     - Scaling & HA → HPA, Azure Load Balancer ensure uptime.
+     - Incident Management → Alertmanager, PagerDuty, Slack notifications

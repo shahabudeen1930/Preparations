@@ -38,7 +38,7 @@
     - Docker components
        -  **Docker Client (CLI)**		# Sends commands to the Docker Daemon.
        -  **Docker Daemon (dockerd)**	# Manages images, containers, networks, and volumes.
-       -  **Docker Images**		# Read-only templates used to create containers.
+       -  **Docker Images**		    # Read-only templates used to create containers.
        -  **Docker Containers**		# Running instances of images, providing an isolated environment.
        -  **Docker Registry**		# Stores and distributes images (e.g., Docker Hub, private registries).
        -  **Docker Storage**		# Includes Volumes (persistent data storage) and Bind Mounts (direct host folder access).

@@ -1,9 +1,36 @@
 #### Docker architecture
-- its a client-server architecture with three main components:
-     - **Docker Client**
-     - **Docker Daemon**(dockerd)
-     - **Docker engine**
-     - other Docker Objects (Images, Containers, Volumes, registry and Networks).
+- Docker follows a client-server architecture with these main components:
+  
+     - "Docker Client (docker CLI)"
+            The primary interface for users to interact with Docker (e.g., running docker build, docker run).
+            Sends commands to the Docker Daemon via REST API.
+
+     - "Docker Daemon (dockerd)"
+          The server component that manages Docker objects (containers, images, networks, etc.).
+          Listens for API requests (via /var/run/docker.sock on Linux or TCP sockets).
+       
+     - "Docker Engine"
+          The core runtime that includes:
+          The Docker Daemon (dockerd).
+          A REST API for client-daemon communication.
+          The containerd runtime (for container lifecycle management).
+          runc (OCI-compliant low-level runtime that creates/executes containers).
+
+     - "Docker Objects"
+          Images: Immutable templates for containers (built from Dockerfile).
+          Containers: Runnable instances of images.
+          Volumes: Persistent data storage outside containers.
+          Networks: Isolated communication layers (bridge, host, overlay, etc.).
+          Registries: Stores/distributes images (e.g., Docker Hub, private registries).
+
+     - "Additional Components (often overlooked but critical)":
+          containerd: Default container runtime (manages container execution, pulled by Docker in 2017).
+          runc: Lightweight CLI tool to spawn containers (implements OCI spec).
+          BuildKit: Modern build engine (faster, more secure alternative to the legacy builder).
+          Docker Desktop: GUI tool for Mac/Windows (includes Docker Engine, Kubernetes, and utilities).
+          Docker Compose: Tool for multi-container apps (defines services in docker-compose.yml).
+          Docker Swarm: Native clustering/orchestration (though less common now with Kubernetes dominance).
+
 - The Client interacts with the Daemon using REST APIs, the Daemon manages containers using namespaces and cgroups.
 
 - Docker components

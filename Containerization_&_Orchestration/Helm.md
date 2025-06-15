@@ -156,3 +156,166 @@ helm upgrade my-nginx ./my-nginx-chart --set replicaCount=3
 # Verify
 kubectl get pods,svc,configmap
 ```
+**8. templates/ingress.yaml**
+               - Add Ingress (templates/ingress.yaml) for external access.
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Chart.Name }}-ingress
+  annotations:
+    # Example annotations (adjust for your Ingress Controller)
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "nginx"  # Use "alb" for AWS ALB, etc.
+spec:
+  rules:
+  - host: {{ .Values.ingress.host | default "nginx.example.com" }}  # Override in values.yaml or with --set
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Chart.Name }}-service  # Matches the Service name in service.yaml
+            port:
+              number: {{ .Values.service.port }}  # Matches service.port from values.yaml
+```
+- Key Notes:
+     - Annotations: Customize for your Ingress Controller (e.g., alb.ingress.kubernetes.io/scheme: internet-facing for AWS ALB).
+     - TLS: Add a tls section to the Ingress spec for HTTPS (requires a cert-manager or pre-provisioned certificate).
+     - Hosts: Ensure DNS points to your Ingress Controller’s external IP/LB.
+
+#### Helm Hook Types
+
+   - Hooks are defined using annotations and run at these stages:
+     - pre-install, post-install
+     - pre-upgrade, post-upgrade
+     - pre-rollback, post-rollback
+     - pre-delete, post-delete
+     - test (for test suites)
+
+**Folder Structure**
+```
+my-chart/
+├── templates/
+│   ├── pre-install-job.yaml
+│   ├── post-install-job.yaml
+│   ├── pre-delete-job.yaml
+│   └── test-pod.yaml
+```
+
+**1. File: templates/pre-install-job.yaml**
+     - Example: pre-install Job (Validate Dependencies)
+```
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Chart.Name }}-pre-install-check"
+  annotations:
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "-5"  # Lower weights run first
+    "helm.sh/hook-delete-policy": hook-succeeded  # Delete the pod after success
+spec:
+  template:
+    spec:
+      containers:
+      - name: pre-install-check
+        image: alpine
+        command: ["/bin/sh", "-c"]
+        args:
+          - echo "Checking cluster dependencies...";
+            kubectl get ns {{ .Values.namespace }} || exit 1;
+            echo "Pre-install validation passed!";
+      restartPolicy: Never
+```
+
+**2. File: templates/post-install-job.yaml**
+     - Example: post-install Notification (Slack Webhook)
+```
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Chart.Name }}-post-install-notify"
+  annotations:
+    "helm.sh/hook": post-install
+    "helm.sh/hook-weight": "5"  # Higher weights run later
+spec:
+  template:
+    spec:
+      containers:
+      - name: slack-notify
+        image: curlimages/curl
+        command: ["/bin/sh", "-c"]
+        args:
+          - 'curl -X POST -H "Content-type: application/json" \
+            --data "{\"text\":\"🚀 Helm release {{ .Release.Name }} deployed to {{ .Release.Namespace }}\"}" \
+            {{ .Values.slack.webhookUrl }}'
+      restartPolicy: Never
+```
+**Add to values.yaml:**
+```
+slack:
+  webhookUrl: "https://hooks.slack.com/services/XXXX/YYYY/ZZZZ"
+```
+
+**3. File: templates/pre-delete-job.yaml**
+     - Example: pre-delete Cleanup (Delete PVCs)
+```
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Chart.Name }}-pre-delete-cleanup"
+  annotations:
+    "helm.sh/hook": pre-delete
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+spec:
+  template:
+    spec:
+      containers:
+      - name: cleanup-pvcs
+        image: bitnami/kubectl
+        command: ["/bin/sh", "-c"]
+        args:
+          - kubectl delete pvc -l app.kubernetes.io/instance={{ .Release.Name }}
+      restartPolicy: Never
+```
+
+**4. File: templates/test-pod.yaml**
+     - Example: test Hook (Smoke Test)
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ .Chart.Name }}-test-connection"
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+  - name: curl-test
+    image: curlimages/curl
+    command: ["curl", "http://{{ .Chart.Name }}-service:{{ .Values.service.port }}"]
+  restartPolicy: Never
+```
+**Run with tests**
+```
+helm test <RELEASE_NAME>
+```
+
+#### Key DevOps Concepts Demonstrated
+- Templating: Uses {{ .Values.* }} for dynamic configs (replicas, image tags, etc.).
+- Config Management: ConfigMap injects Nginx configuration.
+- Scalability: replicaCount can be adjusted during deployment.
+- Reusability: Override defaults via --set or custom values.yaml.
+
+#### Customization Tips:
+- Add Ingress (templates/ingress.yaml) for external access.
+- Use Helm Hooks (e.g., post-install) for cleanup/notifications.
+- Store secrets securely with Helm Secrets or external vaults.
+
+### When to Use Hooks
+- Pre-install: Validate cluster state.
+- Post-install: Notifications, backups, or seeding databases.
+- Pre-delete: Clean up resources Helm can’t manage (e.g., PVs).
+- Tests: Validate deployments.
+
+

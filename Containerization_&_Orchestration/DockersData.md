@@ -1,65 +1,67 @@
 #### Docker architecture
+
 - Docker follows a client-server architecture with these main components:
   
-     - "Docker Client (docker CLI)"
-            The primary interface for users to interact with Docker (e.g., running docker build, docker run).
-            Sends commands to the Docker Daemon via REST API.
+     - Docker Client (docker CLI)
+            - The primary interface for users to interact with Docker (e.g., running docker build, docker run).
+            - Sends commands to the Docker Daemon via REST API.
 
-     - "Docker Daemon (dockerd)"
-          The server component that manages Docker objects (containers, images, networks, etc.).
-          Listens for API requests (via /var/run/docker.sock on Linux or TCP sockets).
+     - Docker Daemon (dockerd)
+          - The server component that manages Docker objects (containers, images, networks, etc.).
+          - Listens for API requests (via /var/run/docker.sock on Linux or TCP sockets).
        
-     - "Docker Engine"
-          The core runtime that includes:
-          The Docker Daemon (dockerd).
-          A REST API for client-daemon communication.
-          The containerd runtime (for container lifecycle management).
-          runc (OCI-compliant low-level runtime that creates/executes containers).
+     - Docker Engine
+          - The core runtime that includes:
+          - The Docker Daemon (dockerd).
+          - A REST API for client-daemon communication.
+          - The containerd runtime (for container lifecycle management).
+          - runc (OCI-compliant low-level runtime that creates/executes containers).
 
-     - "Docker Objects"
-          Images: Immutable templates for containers (built from Dockerfile).
-          Containers: Runnable instances of images.
-          Volumes: Persistent data storage outside containers.
-          Networks: Isolated communication layers (bridge, host, overlay, etc.).
-          Registries: Stores/distributes images (e.g., Docker Hub, private registries).
+     - Docker Objects
+          - Images: Immutable templates for containers (built from Dockerfile).
+          - Containers: Runnable instances of images.
+          - Volumes: Persistent data storage outside containers.
+          - Networks: Isolated communication layers (bridge, host, overlay, etc.).
+          - Registries: Stores/distributes images (e.g., Docker Hub, private registries).
 
-     - "Additional Components (often overlooked but critical)":
-          containerd: Default container runtime (manages container execution, pulled by Docker in 2017).
-          runc: Lightweight CLI tool to spawn containers (implements OCI spec).
-          BuildKit: Modern build engine (faster, more secure alternative to the legacy builder).
-          Docker Desktop: GUI tool for Mac/Windows (includes Docker Engine, Kubernetes, and utilities).
-          Docker Compose: Tool for multi-container apps (defines services in docker-compose.yml).
-          Docker Swarm: Native clustering/orchestration (though less common now with Kubernetes dominance).
+     - Additional Components (often overlooked but critical):
+          - containerd: Default container runtime (manages container execution, pulled by Docker in 2017).
+          - runc: Lightweight CLI tool to spawn containers (implements OCI spec).
+          - BuildKit: Modern build engine (faster, more secure alternative to the legacy builder).
+          - Docker Desktop: GUI tool for Mac/Windows (includes Docker Engine, Kubernetes, and utilities).
+          - Docker Compose: Tool for multi-container apps (defines services in docker-compose.yml).
+          - Docker Swarm: Native clustering/orchestration (though less common now with Kubernetes dominance).
 
-- The Client interacts with the Daemon using REST APIs, the Daemon manages containers using namespaces and cgroups.
+#### Detailed Explaination
 
-- Docker components
-     -  **Docker Client (CLI)**		# Sends commands to the Docker Daemon.
-     -  **Docker Daemon (dockerd)**	# Manages images, containers, networks, and volumes.
-     -  **Docker Images**		# Read-only templates used to create containers.
-     -  **Docker Containers**		# Running instances of images, providing an isolated environment.
-     -  **Docker Registry**		# Stores and distributes images (e.g., Docker Hub, private registries).
-     -  **Docker Storage**		# Includes Volumes (persistent data storage) and Bind Mounts (direct host folder access).
-     -  **Docker Networking**		# Connects containers using different network types (Bridge, Host, Overlay, etc.).
-     -  **Docker Compose**		# Manages multi-container applications using a YAML file.
-     -  **Docker Orchestration**	# Tools like Docker Swarm and Kubernetes for container management at scale.
-- Docker compose
-     - For complex applications which requires multiple services, we can use docker compose ( docker-compose.yml )
-- Docker Networking
-     - Docker provides bridge, host, and overlay networks. 
-     - By default, containers use bridge networking, allowing communication with each other via a virtual subnet.
-     - Overlay networks are used in Docker Swarm for cross-host networking.
-- Docker Deployment Workflow
-     - Writing a Dockerfile
-     - Building a image
-     - running a docker image
-     - pushing the docker image to the registry ( Docker Hub or AWS ECR )
-- Overlay Network docker
-     - its a virtual network that runs on top of an existing physical network.
-     - It enables communication between containers, VMs, services across multiple hosts without requiring changes to the underlying infrastructure.
-     - Creates a logical layer over a physical network.
-     - Provides isolated and secure connectivity.
-     - Supports multi-host communication for containerized environments.
+    - The Client interacts with the Daemon using REST APIs, the Daemon manages containers using namespaces and cgroups.
+    - Docker components
+       -  **Docker Client (CLI)**		# Sends commands to the Docker Daemon.
+       -  **Docker Daemon (dockerd)**	# Manages images, containers, networks, and volumes.
+       -  **Docker Images**		# Read-only templates used to create containers.
+       -  **Docker Containers**		# Running instances of images, providing an isolated environment.
+       -  **Docker Registry**		# Stores and distributes images (e.g., Docker Hub, private registries).
+       -  **Docker Storage**		# Includes Volumes (persistent data storage) and Bind Mounts (direct host folder access).
+       -  **Docker Networking**		# Connects containers using different network types (Bridge, Host, Overlay, etc.).
+       -  **Docker Compose**		# Manages multi-container applications using a YAML file.
+       -  **Docker Orchestration**	# Tools like Docker Swarm and Kubernetes for container management at scale.
+    - Docker compose
+       - For complex applications which requires multiple services, we can use docker compose ( docker-compose.yml )
+    - Docker Networking
+       - Docker provides bridge, host, and overlay networks. 
+       - By default, containers use bridge networking, allowing communication with each other via a virtual subnet.
+       - Overlay networks are used in Docker Swarm for cross-host networking.
+    - Docker Deployment Workflow
+       - Writing a Dockerfile
+       - Building a image
+       - running a docker image
+       - pushing the docker image to the registry ( Docker Hub or AWS ECR )
+    - Overlay Network docker
+       - its a virtual network that runs on top of an existing physical network.
+       - It enables communication between containers, VMs, services across multiple hosts without requiring changes to the underlying infrastructure.
+       - Creates a logical layer over a physical network.
+       - Provides isolated and secure connectivity.
+       - Supports multi-host communication for containerized environments.
 
 #### Docker Labels
 - Those are like key-value metadata assigned to Docker images, containers, volumes, networks.

@@ -34,7 +34,7 @@
 
 #### Detailed Explaination
 
-    - The Client interacts with the Daemon using REST APIs, the Daemon manages containers using namespaces and cgroups.
+  - The Client interacts with the Daemon using REST APIs, the Daemon manages containers using namespaces and cgroups.
     - Docker components
        -  **Docker Client (CLI)**		# Sends commands to the Docker Daemon.
        -  **Docker Daemon (dockerd)**	# Manages images, containers, networks, and volumes.
@@ -226,3 +226,62 @@ ENTRYPOINT ["java", "-jar", "app.jar"]		# Set the command to run the jar
    -  **docker scan <image>**	Scans an image for vulnerabilities.
    -  **docker trust inspect <image>**	Shows trust data for an image.
 
+#### Files and Folders in containers base images :
+  - /bin: contains binary executable files, such as the ls, cp, and ps commands.
+  - /sbin: contains system binary executable files, such as the init and shutdown commands.
+  - /etc: contains configuration files for various systemservices.
+  - /lib: contains library files that are used by the binary executables.
+  - /usr: contains user-related files and utilities, such as applications, libraries, and documentation.
+  - /var: contains variable data, such as log files, spool files, and temporary files.
+  - /root: is the home directory of the root user.
+
+#### Docker Commands :
+  - Basic Management & Information:  
+    - docker version: Displays the Docker client and server version information.
+    - docker info: Provides detailed system-level information about the Docker environment.
+    - docker ps: Lists running containers.
+    - docker ps -a: Lists all containers, including stopped ones.
+    - docker images: Lists all Docker images on your system.
+    - docker search <image_name>: Searches the Docker Hub registry for a specific image.
+
+Container Operations:
+docker run <image_name>: Creates and starts a new container from an image.
+docker run -d <image_name>: Runs a container in detached mode (background).
+docker start <container_id>: Starts a stopped container.
+docker stop <container_id>: Stops a running container.
+docker kill <container_id>: Forcefully stops a container.
+docker rm <container_id>: Removes a stopped container.
+docker exec -it <container_id> <command>: Executes a command within a running container.
+docker logs <container_id>: Fetches and displays logs from a container.
+docker inspect <container_id>: Displays detailed information about a container.
+
+Image Management:
+docker pull <image_name>: Downloads an image from a registry.
+docker build -t <image_name> . : Builds a Docker image from a Dockerfile.
+docker tag <image_id> <repository>:<tag>: Tags an image to be pushed to a registry.
+docker push <repository>:<tag>: Pushes an image to a registry.
+docker rmi <image_id>: Removes an image.
+
+VolumeManagement:
+docker volume create <volume_name>: Creates a Docker volume.
+docker volume ls: Lists all Docker volumes.
+docker volume rm <volume_name>: Removes a volume.
+docker volume inspect <volume_name>: Displays information about a volume.
+
+Network Management:
+docker network create <network_name>: Creates a new network.
+docker network ls: Lists all networks.
+docker network rm <network_name>: Removes a network.
+docker network connect <network_name> <container_id>: Connects a container to a network.
+docker network disconnect <network_name> <container_id>: Disconnects a container from a network.
+
+Other Important Commands:
+docker system prune: Removes unused Docker resources.
+docker system df: Displays disk usage statistics for Docker.
+docker stats <container_id>: Shows real-time resource consumption for a container.
+docker cp <source> <destination>: Copies files or directories between the host machine and a container.
+docker commit <container_id> <image_name>: Creates a new image from the changes in a container.
+docker login: Logs into a Docker registry.
+docker logout: Logs out of a Docker registry.
+docker save -o <output_file.tar> <image_id>: Saves an image to a file.
+docker load -i <input_file.tar>: Loads an image from a file.

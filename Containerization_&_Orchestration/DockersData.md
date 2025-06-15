@@ -38,13 +38,13 @@
     - Docker components
        -  **Docker Client (CLI)**		# Sends commands to the Docker Daemon.
        -  **Docker Daemon (dockerd)**	# Manages images, containers, networks, and volumes.
-       -  **Docker Images**		      # Read-only templates used to create containers.
+       -  **Docker Images**		        # Read-only templates used to create containers.
        -  **Docker Containers**		# Running instances of images, providing an isolated environment.
        -  **Docker Registry**		# Stores and distributes images (e.g., Docker Hub, private registries).
        -  **Docker Storage**		# Includes Volumes (persistent data storage) and Bind Mounts (direct host folder access).
        -  **Docker Networking**		# Connects containers using different network types (Bridge, Host, Overlay, etc.).
        -  **Docker Compose**		# Manages multi-container applications using a YAML file.
-       -  **Docker Orchestration**	    # Tools like Docker Swarm and Kubernetes for container management at scale.
+       -  **Docker Orchestration**	        # Tools like Docker Swarm and Kubernetes for container management at scale.
     - Docker compose
        - For complex applications which requires multiple services, we can use docker compose ( docker-compose.yml )
     - Docker Networking

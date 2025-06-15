@@ -243,6 +243,18 @@ ENTRYPOINT ["java", "-jar", "app.jar"]		# Set the command to run the jar
     - docker ps -a: Lists all containers, including stopped ones.
     - docker images: Lists all Docker images on your system.
     - docker search <image_name>: Searches the Docker Hub registry for a specific image.
+   
+  - Container Operations:
+	  - docker run <image_name>: Creates and starts a new container from an image.
+	  - docker run -d <image_name>: Runs a container in detached mode (background).
+	  - docker start <container_id>: Starts a stopped container.
+	  - docker stop <container_id>: Stops a running container.
+	  - docker kill <container_id>: Forcefully stops a container.
+	  - docker rm <container_id>: Removes a stopped container.
+	  - docker exec -it <container_id> <command>: Executes a command within a running container.
+	  - docker logs <container_id>: Fetches and displays logs from a container.
+	  - docker inspect <container_id>: Displays detailed information about a container.
+
 
 Container Operations:
 docker run <image_name>: Creates and starts a new container from an image.

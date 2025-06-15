@@ -45,7 +45,4 @@
 
 #### Helm Chart architecture
 - A Helm chart is a package format that bundles Kubernetes resources to deploy applications in a repeatable manner.
-![image](https://github.com/user-attachments/assets/c3bf750d-4a76-40f1-9071-049659e6977f)
 - It provides all necessary configurations, dependencies, and templates for setting up applications in a Kubernetes cluster, acting as a blueprint for reusable, customizable deployments.
-![image](https://github.com/user-attachments/assets/e044b9a4-ef59-42b2-9552-3a9a7fc82a7b)
-

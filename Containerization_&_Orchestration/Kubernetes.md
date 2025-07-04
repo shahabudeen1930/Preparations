@@ -1246,3 +1246,44 @@ An API (**Application Programming Interface**) is a set of rules and protocols t
 
 - its one of the most powerful Layer 7 load balancers in Azure, especially when combined with AKS for secure ingress traffic.
 - It provides SSL termination, URL-based routing, WAF, and host-based routing, making it a go-to choice for secure, scalable applications.
+
+#### Alias for DevOps Engineer
+
+```
+alias k='kubectl'
+alias ke='kubectl exec -it'
+alias kx='kubectl exec -it -- /bin/sh'
+alias kd='kubectl describe'
+alias krm='kubectl delete'
+alias kga='kubectl get all'
+alias kdp='kubectl describe pod'
+alias kds='kubectl describe svc'
+alias kdr='kubectl describe rs'
+alias kdn='kubectl describe node'
+alias kdg='kubectl describe deployment'
+alias kgp='kubectl get pods'
+alias kgs='kubectl get svc'
+alias kns='kubectl config set-context --current-context --namespace'
+alias kaf='kubectl apply -f'
+alias kdf='kubectl delete -f'
+alias kcg='kubectl config get-clusters'
+alias krun='kubectl run'
+alias kcp='kubectl cp'
+alias kctx='kubectl config current-context'
+alias kxsh='kubectl exec -it -- /bin/sh'
+alias klog='kubectl logs -f'
+alias ktop='kubectl top'
+alias kxsh='kubectl exec -it -- /bin/sh'
+alias ktopn='kubectl top nodes'
+alias ktopc='kubectl top pods'
+alias kwatch='kubectl get pods --watch'
+alias kedit='kubectl edit'
+alias kxbash='kubectl exec -it -- /bin/bash'
+alias kget='kubectl get'
+alias kgetp='kubectl get pods'
+alias kgetd='kubectl get deployments'
+alias kgetn='kubectl get nodes'
+alias kgetsvc='kubectl get svc'
+alias kgetrs='kubectl get rs'
+
+```
